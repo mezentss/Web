@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Feedback.css">
+    <title>Полезные рецепты</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="MainPage.php">Главная</a></li>
+                <li><a href="#">Рецепты</a></li>
+                <li><a href="#">Категории</a></li>
+                <li><a href="#">Обратная связь</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="Entrance.html">Вход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="inline">
+        <h2>Онлайн заявка</h2>
+        <form id="contact" action="https://httpbin.org/post" method="POST" name="contact" enctype="multipart/form-data">
+          <input id="name" class="txt" name="name" type="text" placeholder="ФИО" required>
+      
+          <input id="email" class="txt" name="email" type="email" placeholder="Email" required>
+      
+          <label for="source">Откуда узнали о нас:</label>
+          <input type="radio" name="source" value="Интернет"> Интернет
+          <input type="radio" name="source" value="Рекомендации"> Рекомендации
+          <input type="radio" name="source" value="Реклама"> Реклама
+          <br>
+      
+          <label for="type">Тип обращения:</label>
+          <select id="type" name="type" required>
+            <option value="Жалоба">Жалоба</option>
+            <option value="Предложение">Предложение</option>
+          </select>
+          <br>
+      
+          <label for="message">Текст сообщения:</label>
+          <textarea id="message" class="txtarea" name="message" placeholder="Введите ваше сообщение" required></textarea>
+          <br>
+      
+          <label for="attachments">Вложения:</label>
+          <input id="attachments" name="attachments" type="file">
+          <br>
+      
+          <label for="consent">
+            <input id="consent" name="consent" type="checkbox" required>
+            Даю согласие на обработку персональных данных
+          </label>
+          <br>
+      
+         <button id="send" type="submit" onclick="resetForm()">Отправить</button>
+        </form>
+      </div>
+
+      <script>
+        function resetForm() {
+          document.getElementById("contact").reset();
+        }
+      </script>
+
+    <footer>
+        <p>Контактная информация: no@no.com | Телефон: 123-456-7890</p>
+        <p>© 2023 Полезные рецепты.</p>
+    </footer>
+</body>
+</html>

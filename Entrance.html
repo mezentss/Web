@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Entrance.css">
+    <title>Полезные рецепты</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="MainPage.php">Главная</a></li>
+                <li><a href="#">Рецепты</a></li>
+                <li><a href="#">Категории</a></li>
+                <li><a href="Feedback.html">Обратная связь</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="Entrance.html">Зарегистрироваться</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form id="login-form" action="https://httpbin.org/post" method="POST" onsubmit="redirectToMainPage(event)">
+          <h2>Вход</h2>
+          <input type="text" id="login" name="login" placeholder="Логин" required>
+          <input type="password" id="password" name="password" placeholder="Пароль" required>
+          <label for="remember-me">
+            <input type="checkbox" id="remember-me" name="remember-me">
+            Запомнить меня
+          </label>
+          <button type="submit">Войти</button>
+        </form>
+      </main>
+      
+      <script>
+        function redirectToMainPage(event) {
+          event.preventDefault();
+          var form = document.getElementById("login-form");
+          form.submit(); 
+          window.location.href = "MainPage.html";
+        }
+      </script>
+
+    <footer>
+        <p>Контактная информация: no@no.com | Телефон: 123-456-7890</p>
+        <p>© 2023 Полезные рецепты.</p>
+    </footer>
+</body>
+</html>
