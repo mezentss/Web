@@ -11,7 +11,7 @@ try {
     die(":(");
 }
 
-$sql = "SELECT name FROM dishes LIMIT 10";
+$sql = "SELECT name, description FROM dishes LIMIT 10";
 $result = $conn->query($sql);
 
 ?>
@@ -26,7 +26,7 @@ $result = $conn->query($sql);
         echo "<title>$pageTitle</title>"; 
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="MainPage.css">
+    <link rel="stylesheet" href="Recepies.css">
     
 </head>
 <body>
@@ -42,18 +42,20 @@ $result = $conn->query($sql);
     </ul>
 </nav>
     </header>
-
+    <main>
     <table>
         <tr>
             <th>Блюдо</th>
+            <th>Описание</th>
             <th>Изображение</th>
         </tr>
         <?php
         if ($result->rowCount() > 0) {
             while($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>" . $row["name"] . "</td>";
-                echo "<td><img src='Рецепты\\" . $row["name"]. '.jpg'. "'></td>";
+                echo "<td class='name'>" . $row["name"] . "</td>";
+                echo "<td class='description'>" . $row["description"] . "</td>";
+                echo "<td><img src='Рецепты\\" . $row["name"]. '.jpg'. "' alt='" . $row["name"] . "' title='" . $row["name"] . "'></td>";
                 echo "</tr>";
             }
         } 
@@ -63,6 +65,7 @@ $result = $conn->query($sql);
     <?php
     $conn = null;
     ?>
+    </main>
 </body>
 
 <footer>
