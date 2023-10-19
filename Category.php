@@ -8,7 +8,7 @@
         echo "<title>$pageTitle</title>"; 
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="MainPage.css">
+    <link rel="stylesheet" href="Category.css">
 
 </head>
 <body>
@@ -25,50 +25,76 @@
         </nav>
     </header>
 
-    <form>
-        <label for="x">Введите число:</label>
-        <input type="number" id="x" required>
-        <br>
-        <label for="n">Введите степень:</label>
-        <input type="number" id="n" required>
-        <br>
-        <input type="button" value="Возвести в степень" onclick="powMy()">
-    </form>
-    <div id="result"></div>
+    
+
+<main>
+<br><br><br><br><br><br> 
+<div class="container">
+  <div>
+<label for="x">Введите число:</label>
+<input type="number" id="x" required>
+<br>
+<label for="n">Введите степень:</label>
+<input type="number" id="n" required>
+<br><br><br>
+<input type="button" value="Возвести в степень" onclick="powMy()">
+    
+<div id="result"></div>
+</div>
 
 
-    <label for="a">Введите первое число:</label>
+<div>
+<label for="x2">Введите число:</label>
+<input type="number" id="x2" required>
+<br><br><br>
+<input type="button" value="Наименьшая цифра" onclick="findMinDigit()">
+
+<div id="minDigitResult"></div>
+</div>
+
+<div>   
+<label for="a">Введите первое число:</label>
 <input type="number" id="a" required>
 <br>
 <label for="b">Введите второе число:</label>
 <input type="number" id="b" required>
-<br>
+<br><br><br>
 <input type="button" value="Найти НОД" onclick="calculateGCD()">
+
 <div id="gcdResult"></div>
-
+</div>
 <br>
 
-<label for="x2">Введите число:</label>
-<input type="number" id="x2" required>
-<br>
-<input type="button" value="Наименьшая цифра" onclick="findMinDigit()">
-<div id="minDigitResult"></div>
+
+</div>
 
 <br><br>
 
+
+<div class="container">
+  <div>
 <label for="n2">Введите число:</label>
 <input type="number" id="n2" required>
 <br>
+<br><br>
 <input type="button" value="Великий и могучий русский язык" onclick="pluralize()">
+
 <div id="pluralizeResult"></div>
+</div>
 
 <br><br>
 
+<div>
 <label for="n3">Введите число:</label>
 <input type="number" id="n3" required>
-<br>
+<br><br><br>
 <input type="button" value="Фибоначчи" onclick="calculateFibonacci()">
 <div id="fibonacciResult"></div>
+</div>
+<br><br>
+</div></div>
+<br><br><br><br><br><br>  
+</main>
 
 <script>
     function powMy() {
@@ -134,7 +160,7 @@
     function findMinDigit() {
         var x = parseInt(document.getElementById("x2").value);
         var result = minDigit(x);
-        document.getElementById("minDigitResult").innerHTML = "The minimum digit in " + x + " is: " + result;
+        document.getElementById("minDigitResult").innerHTML = "Минимальная цифра в числе " + x + ": " + result;
     }
 
     function pluralize() {
@@ -146,7 +172,7 @@
     function calculateFibonacci() {
         var n = parseInt(document.getElementById("n3").value);
         var result = fibb(n);
-        document.getElementById("fibonacciResult").innerHTML = "The Fibonacci number at position " + n + " is: " + result;
+        document.getElementById("fibonacciResult").innerHTML = "Число Фибоначчи на позиции " + n + ": " + result;
     }
 </script>
 

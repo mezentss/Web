@@ -49,21 +49,31 @@
             </tr>
         </table>
 
-        <ul>
-        <?php
-            $recipes = array(
-                "Омлет с сыром",
-                "Пицца с каперсами",
-                "Салат Цезарь",
-                "Удон",
-                "Омлет"
-            );
+        <br><br><br>
 
-            foreach ($recipes as $recipe) {
-                echo "<li>$recipe</li>";
-            }
-        ?>
-    </ul>
+       <ul class="recipe-list">
+    <h2 class="recipe-list-title">Скоро появится категория завтраков:</h2>
+
+    <h3 class="recipe-type">
+    <?php
+        $recipes = array(
+                "Омлет с каперсами",
+                " ~ ",
+                "Творожные вафли",
+                " ~ ",
+                "Яичный скрэмбл с кунжутной заправкой",
+                " ~ ",
+                "Панкейки на греческом йогурте с малиной",
+                " ~ ",
+                "Овсянка с яйцом, сыром и секретным ингредиентом"
+        );
+
+        foreach ($recipes as $recipe) {
+            echo '<li class="recipe-item">' .$recipe. '</li>';
+        }
+    ?>
+    </h3>
+</ul>
 
     </main>
 
