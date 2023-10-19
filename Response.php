@@ -13,7 +13,7 @@
         <ul>
         <li><a href="<?php echo 'MainPage.php'; ?>" class="<?php echo ''; ?>">Главная</a></li>
         <li><a href="<?php echo 'Recepies.php'; ?>" class="<?php echo ''; ?>">Рецепты</a></li>
-        <li><a href="<?php echo '#'; ?>" class="<?php echo ''; ?>">Категории</a></li>
+        <li><a href="<?php echo 'Category.php'; ?>" class="<?php echo ''; ?>">Категории</a></li>
         <li><a href="<?php echo 'Feedback.php'; ?>" class="<?php echo ''; ?>">Обратная связь</a></li>
         <li><a href="<?php echo '#'; ?>" class="<?php echo ''; ?>">О нас</a></li>
         <li><a href="<?php echo 'Entrance.html'; ?>" class="<?php echo ''; ?>">Вход</a></li>
