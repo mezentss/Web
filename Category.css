@@ -81,7 +81,7 @@ input[type="number"] {
     width: 200px;
     padding: 5px;
     border-radius: 25%;
-    border: 1px solid #5193b978;
+    border: 1px solid #ffff;
 }
 
 input[type="button"] {
