@@ -80,19 +80,23 @@ label {
 input[type="number"] {
     width: 200px;
     padding: 5px;
+    border-radius: 25%;
+    border: 1px solid #5193b978;
 }
 
 input[type="button"] {
     padding: 10px 20px;
     background-color: #264e54;
     color: white;
-    border: none;
+    border: 1px solid #ffffff00;
     cursor: pointer;
+    border-radius: 25%;
 }
 
 #result, #gcdResult, #minDigitResult, #pluralizeResult, #fibonacciResult {
     margin-top: 20px;
     font-weight: bold;
+    color: #1f7683;
 }
 
   
@@ -100,6 +104,7 @@ input[type="button"] {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
+    
   }
   
   .container > div {
@@ -112,6 +117,46 @@ input[type="button"] {
     flex-basis: 100%;
   }
 
+  .container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    padding: 30px;
+    border: 1px solid #ffffff;
+    background-color: #4e889153;
+    border-radius: 25%;
+    width: 250px;
+}
+
+.screen {
+    grid-column: span 3;
+    padding: 10px;
+    text-align: right;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #4e8891;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  
 footer {
     background-color: #4e8891;
     padding: 10px;

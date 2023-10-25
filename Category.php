@@ -93,7 +93,44 @@
 </div>
 <br><br>
 </div></div>
-<br><br><br><br><br><br>  
+
+
+<div class="container2">
+    <div class="calculator">
+        <div class="screen"></div>
+        <div class="number-row">
+            <div class="btn digit">7</div>
+            <div class="btn digit">8</div>
+            <div class="btn digit">9</div>
+        </div>
+        <div class="number-row">
+            <div class="btn digit">4</div>
+            <div class="btn digit">5</div>
+            <div class="btn digit">6</div>
+        </div>
+        <div class="number-row">
+            <div class="btn digit">1</div>
+            <div class="btn digit">2</div>
+            <div class="btn digit">3</div>
+        </div>
+        <div class="symbol-row">
+            <div class="btn operation">+</div>
+            <div class="btn bracket">(</div>
+            <div class="btn operation">/</div>
+            </div>
+        <div class="symbol-row">
+            <div class="btn operation">-</div>
+            <div class="btn bracket">)</div>
+            <div class="btn operation">*</div>
+        </div>
+        <div class="symbol-row">
+            <div class="btn clear">C</div>
+            <div class="btn result">=</div>
+            <div class="btn digit">0</div>
+        </div>
+    </div>
+</div>
+
 </main>
 
 <script>
@@ -174,6 +211,125 @@
         var result = fibb(n);
         document.getElementById("fibonacciResult").innerHTML = "Число Фибоначчи на позиции " + n + ": " + result;
     }
+</script>
+
+
+<script>
+
+function priority(operation) {
+    if (operation == '+' || operation == '-') {
+        return 1;
+    } else {
+        return 2;
+    }
+}
+
+function isNumeric(str) {
+    return /^\d+(.\d+){0,1}$/.test(str);
+}
+
+function isDigit(str) {
+    return /^\d{1}$/.test(str);
+}
+
+function isOperation(str) {
+    return /^[\+\-\*\/]{1}$/.test(str);
+}
+
+
+function tokenize(str) {
+    let tokens = [];
+    let lastNumber = '';
+    for (char of str) {
+        if (isDigit(char) || char == '.') {
+            lastNumber += char;
+        } else {
+            if(lastNumber.length > 0) {
+                tokens.push(lastNumber);
+                lastNumber = '';
+            }
+        } 
+        if (isOperation(char) || char == '(' || char == ')') {
+            tokens.push(char);
+        } 
+    }
+    if (lastNumber.length > 0) {
+        tokens.push(lastNumber);
+    }
+    return tokens;
+}
+
+function compile(str) {
+    let out = [];
+    let stack = [];
+    for (token of tokenize(str)) {
+        if (isNumeric(token)) {
+            out.push(token);
+        } else if (isOperation(token)) {
+            while (stack.length > 0 && isOperation(stack[stack.length - 1]) && priority(stack[stack.length - 1]) >= priority(token)) {
+                out.push(stack.pop());
+            }
+            stack.push(token);
+        } else if (token == '(') {
+            stack.push(token);
+        } else if (token == ')') {
+            while (stack.length > 0 && stack[stack.length-1] != '(') {
+                out.push(stack.pop());
+            }
+            stack.pop();
+        }
+    }
+    while (stack.length > 0) {
+        out.push(stack.pop());
+    }
+    return out.join(' ');
+}
+
+
+function evaluate(str) {
+    let stack = [];
+    for (token of str.split(' ')) {
+        if (isNumeric(token)) {
+            stack.push(parseFloat(token));
+        } else if (isOperation(token)) {
+            let b = stack.pop();
+            let a = stack.pop();
+            let result;
+            if (token == '+') {
+                result = a + b;
+            } else if (token == '-') {
+                result = a - b;
+            } else if (token == '*') {
+                result = a * b;
+            } else if (token == '/') {
+                result = a / b;
+            }
+            stack.push(result);
+        }
+    }
+    return stack[0].toFixed(2);
+}
+
+function clickHandler(event) {
+    let screen = document.querySelector('.screen');
+    let button = event.target;
+    if (button.classList.contains('digit') || button.classList.contains('operation') || button.classList.contains('bracket')) {
+        screen.textContent += button.textContent;
+    } else if (button.classList.contains('clear')) {
+        screen.textContent = '';
+    } else if (button.classList.contains('result')) {
+        let expression = screen.textContent;
+        let compiledExpression = compile(expression);
+        let result = evaluate(compiledExpression);
+        screen.textContent = result;
+    }
+}
+
+window.onload = function () {
+    let calculator = document.querySelector('.calculator');
+    calculator.addEventListener('click', clickHandler);
+}
+
 </script>
 
     <footer>
