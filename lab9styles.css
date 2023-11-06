@@ -7,11 +7,20 @@ header {
     background-color: #dcdcdc;
     padding: 20px;
     display: flex;
-}
-
-.logo {
+  }
+  
+  .logo {
     width: 150px;
-}
+  }
+
+  .formula {
+    width: 400px;
+    
+  }
+  
+  h1 {
+    margin-left: auto; 
+  }
 
 footer {
     background-color: #808080;
