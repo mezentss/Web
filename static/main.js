@@ -127,9 +127,42 @@ window.onload = function () {
     document.querySelector('.per-page-btn').onchange = perPageBtnHandler;
 }
 
-const searchBtn = document.querySelector('.search-btn');
 const searchField = document.querySelector('.search-field');
+const searchBtn = document.querySelector('.search-btn');
+const suggestionsList = document.createElement('ul');
+suggestionsList.classList.add('suggestions-list');
+searchField.parentNode.appendChild(suggestionsList);
 
+searchField.addEventListener('input', function() {
+  const searchText = searchField.value.toLowerCase();
+
+  if (searchText.length > 0) {
+    $.ajax({
+      url: 'http://cat-facts-api.std-900.ist.mospolytech.ru/autocomplete',
+      data: { q: searchText },
+      dataType: 'json',
+      success: function(data) {
+        showSuggestions(data);
+      }
+    });
+  } else {
+    clearSuggestions();
+  }
+});
+
+function showSuggestions(suggestions) {
+  clearSuggestions();
+
+  suggestions.forEach(function(suggestion) {
+    const suggestionItem = document.createElement('li');
+    suggestionItem.textContent = suggestion;
+    suggestionsList.appendChild(suggestionItem);
+  });
+}
+
+function clearSuggestions() {
+  suggestionsList.innerHTML = '';
+}
 
 searchBtn.addEventListener('click', function() {
   const searchText = searchField.value.toLowerCase();
@@ -145,5 +178,6 @@ searchBtn.addEventListener('click', function() {
     }
   });
 });
+
 
 
