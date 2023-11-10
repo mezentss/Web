@@ -16,29 +16,34 @@
     <main>
 
 <?php
-$initialValue = 1; 
+$initialValue = 0; 
 $numValues = 50; 
 $step = 0.5; 
 $maxValue = 30;
 $minValue = -30; 
 
-$type = 'D'; 
+$type = 'E'; 
 
 $values = array();
 $arguments = array();
 
 for ($i = 0; $i < $numValues; $i++) {
     $argument = $initialValue + ($i * $step);
-    if ($argument <= 10) {
-        $value = (10 + $argument) / $argument;
-    } elseif ($argument > 10 && $argument < 20) {
-        $value = ($argument / 7) * ($argument - 2);
-    } else {
-        $value = ($argument * 8) + 2;
-    }
     
-    if ($value > $maxValue || $value < $minValue) {
-        break;
+    if ($argument == 0) {
+        $value = "ошибка";
+    } else {
+        if ($argument <= 10) {
+            $value = (10 + $argument) / $argument;
+        } elseif ($argument > 10 && $argument < 20) {
+            $value = ($argument / 7) * ($argument - 2);
+        } else {
+            $value = ($argument * 8) + 2;
+        }
+        
+        if ($value > $maxValue || $value < $minValue) {
+            break;
+        }
     }
     
     $values[] = $value;
