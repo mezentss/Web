@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Text Analysis Result</title>
+    <link rel="stylesheet" href="lab10.css">
     <style>
         table {
             border-collapse: collapse;
@@ -21,15 +22,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($inputText)) {
         echo "<p> Нет текста для анализа</p>";
     } else {
-        $charCount = strlen($inputText);
+        //$inputText = mb_convert_encoding($inputText, "EUC-JP", "auto");
         $letterCount = preg_match_all('/\p{L}/u', $inputText);
         $lowerCaseCount = preg_match_all('/\p{Ll}/u', $inputText);
         $upperCaseCount = preg_match_all('/\p{Lu}/u', $inputText);
         $punctuationCount = preg_match_all('/[[:punct:]]/', $inputText);
         $digitCount = preg_match_all('/\d/', $inputText);
-        $wordArray = str_word_count($inputText, 1, 'ёЁа-яА-Я');
+        $wordArray = preg_split('/[\s\pP]+/u', $inputText, -1, PREG_SPLIT_NO_EMPTY);
         $wordCount = count($wordArray);
-        
+        $charCount = $letterCount + $digitCount +  $punctuationCount +  $wordCount - 1;
+
+        $charCountArray = count_chars($inputText, 1);
+        $wordCountArray = array_count_values($wordArray);
+        ksort($wordCountArray);
+
+
+
         echo "<table>";
         echo "<tr><th>Информация</th><th>Количество</th></tr>";
         echo "<tr><td>Количество символов</td><td>$charCount</td></tr>";
@@ -39,11 +47,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<tr><td>Количество знаков препинания</td><td>$punctuationCount</td></tr>";
         echo "<tr><td>Количество цифр</td><td>$digitCount</td></tr>";
         echo "<tr><td>Количество слов</td><td>$wordCount</td></tr>";
+        
+        echo "<tr><td>Количество вхождений каждого символа</td><td>";
+        foreach ($charCountArray as $char => $count) {
+        echo "$char: $count, ";
+        }
+        echo "</td></tr>";
+
+        echo "<table>";
+        echo "<tr><th>Слово</th><th>Количество вхождений</th></tr>";
+        foreach ($wordCountArray as $word => $count) {
+             echo "<tr><td>$word</td><td>$count</td></tr>";
+            }
         echo "</table>";
+
     }
 }
 ?>
 <br>
 <a href="lab10.html">Другой анализ</a>
 </body>
+
+<footer>
+    <p>2023 Мезенцева Софья Дмитриевна | Группа 221-361</p>
+    <p>Лабораторная работа №10</p>
+</footer>
+
 </html>
