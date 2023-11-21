@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Меню и таблица умножения</title>
     <style>
         .menu {
             float: left;
@@ -23,66 +21,89 @@
         .active {
             font-weight: bold;
         }
+        footer {
+            background-color: #4e8891;
+            padding: 10px;
+            text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+        }
     </style>
-</head>
-<body>
+<head>
+    <title>Меню и таблица умножения</title>
     <div class="menu">
         <h3>Главное меню</h3>
-        <a href="?type=table" <?php if(!isset($_GET['type']) || $_GET['type'] == 'table') echo 'class="active"' ?>>Табличная верстка</a><br>
-        <a href="?type=block" <?php if(isset($_GET['type']) && $_GET['type'] == 'block') echo 'class="active"' ?>>Блочная верстка</a><br>
+        <a href="?type=table<?php if(isset($_GET['num'])) echo '&num='.$_GET['num']; ?>" <?php if(!isset($_GET['type']) || $_GET['type'] == 'table') echo 'class="active"' ?>>Табличная верстка</a><br>
+        <a href="?type=block<?php if(isset($_GET['num'])) echo '&num='.$_GET['num']; ?>" <?php if(isset($_GET['type']) && $_GET['type'] == 'block') echo 'class="active"' ?>>Блочная верстка</a><br>
     </div>
     <div class="content">
         <h3>Основное меню</h3>
-        <a href="?num=all" <?php if(!isset($_GET['num']) || $_GET['num'] == 'all') echo 'class="active"' ?>>Всё</a><br>
+        <a href="?num=all<?php if(isset($_GET['type'])) echo '&type='.$_GET['type']; ?>" <?php if(!isset($_GET['num']) || $_GET['num'] == 'all') echo 'class="active"' ?>>Всё</a><br>
         <?php 
         for ($i=2; $i<=9; $i++) {
-            echo '<a href="?num='.$i.'" ';
+            echo '<a href="?num='.$i;
+            if(isset($_GET['type'])) echo '&type='.$_GET['type'];
+            echo '" ';
             if(isset($_GET['num']) && $_GET['num'] == $i) echo 'class="active"';
             echo '>'.$i.'</a><br>';
         }
         ?>
     </div>
-
-    <?php
-    if(isset($_GET['num'])) {
-        if($_GET['num'] != 'all') {
-            echo '<h3>Таблица умножения на '.$_GET['num'].'</h3>';
-            echo '<div style="display: flex; flex-wrap: wrap;">';
-            for ($j=1; $j<=9; $j++) {
-                echo '<div style="width: 100px; border: 1px solid black; padding: 8px; margin: 4px; font-size: 20px;">';
-                echo '<a href="?num='.$_GET['num'].'">'.$_GET['num'].'</a> x <a href="?num='.$j.'">'.$j.'</a> = '.($_GET['num']*$j).'<br>';
-                echo '</div>';
-            }
-            echo '</div>';
-        }
-    }
-    ?>
-
-    <h3>Таблица умножения</h3>
-    <?php
-    if(isset($_GET['type']) && $_GET['type'] == 'block') {
+</head>
+<body>
+<?php
+if(isset($_GET['num'])) {
+    if($_GET['num'] != 'all') {
+        echo '<h3>Таблица умножения на '.$_GET['num'].'</h3>';
         echo '<div style="display: flex; flex-wrap: wrap;">';
-        for ($i=1; $i<=9; $i++) {
-            echo '<div style="width: 100px; border: 1px solid black; padding: 8px; margin: 4px;">';
-            for ($j=1; $j<=9; $j++) {
-                echo $i.'x'.$j.'='.($i*$j).'<br>';
-            }
+        for ($j=1; $j<=9; $j++) {
+            echo '<div style="width: 100px; border: 1px solid black; padding: 8px; margin: 4px; font-size: 20px;">';
+            echo '<a href="?num='.$_GET['num'];
+            if(isset($_GET['type'])) echo '&type='.$_GET['type'];
+            echo '">'.$_GET['num'].'</a> x <a href="?num='.$j;
+            if(isset($_GET['type'])) echo '&type='.$_GET['type'];
+            echo '">'.$j.'</a> = '.($_GET['num']*$j).'<br>';
             echo '</div>';
         }
         echo '</div>';
-    } else {
-        echo '<table>';
-        for ($i=1; $i<=9; $i++) {
-            echo '<tr>';
-            for ($j=1; $j<=9; $j++) {
-                echo '<td>'.$i.'x'.$j.'='.($i*$j).'</td>';
-            }
-            echo '</tr>';
-        }
-        echo '</table>';
     }
-    ?>
+}
+?>
+
+<h3>Таблица умножения</h3>
+<?php
+if(isset($_GET['type']) && $_GET['type'] == 'block') {
+    echo '<div style="display: flex; flex-wrap: wrap;">';
+    for ($i=1; $i<=9; $i++) {
+        echo '<div style="width: 100px; border: 1px solid black; padding: 8px; margin: 4px;">';
+        for ($j=1; $j<=9; $j++) {
+            echo '<a href="?num='.$i;
+            if(isset($_GET['num'])) echo '&num='.$_GET['num'];
+            echo '">'.$i.'</a> x <a href="?num='.$j;
+            if(isset($_GET['num'])) echo '&num='.$_GET['num'];
+            echo '">'.$j.'</a> = '.($i*$j).'<br>';
+        }
+        echo '</div>';
+    }
+    echo '</div>';
+} else {
+    echo '<table>';
+    for ($i=1; $i<=9; $i++) {
+        echo '<tr>';
+        for ($j=1; $j<=9; $j++) {
+            echo '<td><a href="?num='.$i;
+            if(isset($_GET['type'])) echo '&type='.$_GET['type'];
+            echo '">'.$i.'</a> x <a href="?num='.$j;
+            if(isset($_GET['type'])) echo '&type='.$_GET['type'];
+            echo '">'.$j.'</a> = '.($i*$j).'</td>';
+        }
+        echo '</tr>';
+    }
+    echo '</table>';
+}
+?>
 </body>
+
 
 <footer>
     <h3>Информация о содержании страницы</h3>
