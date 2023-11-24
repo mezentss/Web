@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inputText = $_POST['inputText'];
@@ -38,7 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $charCountArray = preg_split('/(?<!^)(?!$)/u', $inputText, -1, PREG_SPLIT_NO_EMPTY);
         $charCountArray = array_count_values($charCountArray);
         arsort($charCountArray);
+        ?>
+       
 
+<br><br>
+        <?php
         echo "<table>";
         echo "<tr><th>Информация</th><th>Количество</th></tr>";
         echo "<tr><td>Количество символов</td><td>$charCount</td></tr>";
@@ -58,7 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         echo "</td></tr>";
         echo "</table>";
-
+        ?>
+            <br><br>
+        <?php
         echo "<table>";
         echo "<tr><th>Слово</th><th>Количество вхождений</th></tr>";
         foreach ($wordCountArray as $word => $count) {
@@ -69,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <br>
-<a href="lab10.html">Другой анализ</a>
+<a href="lab10.html" style="text-align: center; color: #333; text-decoration: none;">Другой анализ</a>
 </body>
 
 <footer>

@@ -27,6 +27,8 @@
             text-align: center;
     font-size: 12px;
     color: #ffffff;
+
+    
         }
     </style>
 <head>
