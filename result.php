@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <br>
-<a href="lab10.html" style="text-align: center; color: #333; text-decoration: none;">Другой анализ</a>
+<a href="lab10.html" style="text-align: center; color: #333; text-decoration: none; ">Другой анализ</a>
 </body>
 
 <footer>
