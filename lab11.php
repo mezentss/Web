@@ -109,7 +109,7 @@ if(isset($_GET['num'])) {
 }
 ?>
 
-<div class="content" style="display: flex; flex-wrap: wrap;">
+<div  style="display: flex; flex-wrap: wrap;">
     <div style="flex: 1;">
         <h3>Основное меню</h3>
         <a href="?num=all<?php if(isset($_GET['type'])) echo '&type='.$_GET['type']; ?>" <?php if(!isset($_GET['num']) || $_GET['num'] == 'all') echo 'class="active"' ?>>Всё</a><br>
