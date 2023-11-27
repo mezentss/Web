@@ -52,7 +52,19 @@ header h3{
             text-align: center;
     font-size: 12px;
     color: #ffffff;
+    margin-top: 20px;
+    width: 100%;
         }
+
+        .content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content > div {
+    flex: 1;
+}
+
         
     </style>
 <head>
@@ -97,9 +109,11 @@ if(isset($_GET['num'])) {
 }
 ?>
 
-<div class="content">
+<div class="content" style="display: flex; flex-wrap: wrap;">
+    <div style="flex: 1;">
         <h3>Основное меню</h3>
         <a href="?num=all<?php if(isset($_GET['type'])) echo '&type='.$_GET['type']; ?>" <?php if(!isset($_GET['num']) || $_GET['num'] == 'all') echo 'class="active"' ?>>Всё</a><br>
+        
         <?php 
         for ($i=2; $i<=9; $i++) {
             echo '<a href="?num='.$i;
@@ -110,8 +124,11 @@ if(isset($_GET['num'])) {
         }
         ?>
     </div>
+    
 
+<div style="flex: 1;">
 <h3>Таблица умножения</h3>
+</div>
 <?php
 if(isset($_GET['type']) && $_GET['type'] == 'block') {
     echo '<div >';
@@ -170,6 +187,9 @@ else {
 </body>
 
 
+
+
+
 <footer>
     <h3>Информация о содержании страницы</h3>
     <?php
@@ -192,5 +212,4 @@ else {
     echo 'Дата и время: '.date("Y-m-d H:i:s").'<br>';
     ?>
 </footer>
-
 </html>
